@@ -19,9 +19,23 @@ function selectTime(pill) {
 // ── Modal: abrir ──────────────────────────────────────
 function openModal() {
   metrics.ctaClicks++;
-  showState('stateSearching');
-  document.getElementById('modal').classList.add('open');
-  setTimeout(() => showState('stateCapture'), 2800);
+  const modal = document.getElementById('modal');
+  if (!modal) return;
+  
+  // Mostrar todos los estados para resetear
+  const s1 = document.getElementById('stateSearching');
+  const s2 = document.getElementById('stateCapture');
+  const s3 = document.getElementById('stateConfirm');
+  
+  if (s1) s1.classList.remove('hidden');
+  if (s2) s2.classList.add('hidden');
+  if (s3) s3.classList.add('hidden');
+  
+  modal.classList.add('open');
+  setTimeout(() => {
+    if (s1) s1.classList.add('hidden');
+    if (s2) s2.classList.remove('hidden');
+  }, 2800);
 }
 
 // ── Modal: cerrar ─────────────────────────────────────
@@ -73,9 +87,11 @@ function submitCapture() {
 // ── Helpers ───────────────────────────────────────────
 function showState(id) {
   ['stateSearching', 'stateCapture', 'stateConfirm'].forEach(s => {
-    document.getElementById(s).classList.add('hidden');
+    const el = document.getElementById(s);
+    if (el) el.classList.add('hidden');
   });
-  document.getElementById(id).classList.remove('hidden');
+  const target = document.getElementById(id);
+  if (target) target.classList.remove('hidden');
 }
 
 function showError(inputId, message) {
