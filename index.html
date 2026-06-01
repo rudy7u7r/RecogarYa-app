@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecogaYa!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">🗑</span>
+      <span class="logo-text">RecogaYa<span class="logo-excl">!</span></span>
+    </div>
+    <div class="header-badge">Lanzamiento pronto</div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1 class="hero-title">¿Basura acumulada?<br>La retiramos hoy mismo.</h1>
+      <p class="hero-sub">El primer servicio de retiro de basura a demanda de Chile. Rápido, confiable y desde $4.990.</p>
+    </div>
+
+    <!-- MAP -->
+    <div class="map-box">
+      <div class="map-grid"></div>
+      <div class="map-dot">
+        <span class="map-dot-ring"></span>
+      </div>
+      <div class="map-you-label">Tú</div>
+      <div class="map-truck" id="truck1">🚛</div>
+      <div class="map-truck" id="truck2">🚚</div>
+      <div class="map-badge">2 recolectores disponibles cerca</div>
+    </div>
+
+    <!-- BENEFITS -->
+    <section class="section">
+      <p class="section-label">¿Por qué RecogaYa?</p>
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <span class="b-icon">⚡</span>
+          <div>
+            <span class="b-title">Retiro express en el día</span>
+            <span class="b-desc">Sin esperar días ni cumplir horarios fijos del municipio.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="b-icon">📍</span>
+          <div>
+            <span class="b-title">Seguimiento en tiempo real</span>
+            <span class="b-desc">Sigue a tu recolector igual que un pedido de delivery.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="b-icon">✅</span>
+          <div>
+            <span class="b-title">Pago simple y seguro</span>
+            <span class="b-desc">Tarifa fija desde $4.990. Sin sorpresas ni costos ocultos.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section">
+      <p class="section-label">Tipo de residuo</p>
+      <div class="services-grid">
+        <div class="service-card selected" data-price="$4.990" onclick="selectService(this)">
+          <span class="s-icon">🛍️</span>
+          <span class="s-name">Doméstico</span>
+          <span class="s-price">desde $4.990</span>
+        </div>
+        <div class="service-card" data-price="$9.990" onclick="selectService(this)">
+          <span class="s-icon">📦</span>
+          <span class="s-name">Voluminoso</span>
+          <span class="s-price">desde $9.990</span>
+        </div>
+        <div class="service-card" data-price="$3.490" onclick="selectService(this)">
+          <span class="s-badge">ECO</span>
+          <span class="s-icon">♻️</span>
+          <span class="s-name">Reciclaje</span>
+          <span class="s-price">desde $3.490</span>
+        </div>
+        <div class="service-card" data-price="$19.990" onclick="selectService(this)">
+          <span class="s-icon">🏗️</span>
+          <span class="s-name">Escombros</span>
+          <span class="s-price">desde $19.990</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="section">
+      <p class="section-label">Hora de retiro</p>
+      <div class="times-row">
+        <button class="time-pill selected" onclick="selectTime(this)">Ahora (18 min)</button>
+        <button class="time-pill" onclick="selectTime(this)">En 1 hora</button>
+        <button class="time-pill" onclick="selectTime(this)">Hoy 18:00</button>
+        <button class="time-pill" onclick="selectTime(this)">Mañana 09:00</button>
+      </div>
+    </section>
+
+    <!-- ADDRESS -->
+    <section class="section">
+      <p class="section-label">Dirección</p>
+      <div class="address-row">
+        <span class="address-pin">📍</span>
+        <div class="address-text">
+          <span class="address-sub">Retirar desde</span>
+          <span class="address-main">Ramón Freire 847, Osorno</span>
+        </div>
+        <span class="address-arrow">›</span>
+      </div>
+    </section>
+
+    <!-- CTA PRINCIPAL -->
+    <div class="cta">
+      <div class="cta-price">
+        <span class="cta-label">Total estimado</span>
+        <span class="cta-amount" id="totalPrice">$4.990</span>
+      </div>
+      <!-- BOTÓN CLAVE DEL TEST DE HUMO -->
+      <button class="btn-primary" id="btnCTA" onclick="openModal()">
+        Solicitar Retiro Express — $4.990
+      </button>
+      <p class="cta-hint">Sin compromiso · Cancela cuando quieras</p>
+    </div>
+
+    <div class="spacer"></div>
+  </main>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <div class="nav-item active">
+      <span class="nav-icon">⌂</span>
+      <span class="nav-label">Inicio</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">⏱</span>
+      <span class="nav-label">Historial</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">♻</span>
+      <span class="nav-label">Eco puntos</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">◯</span>
+      <span class="nav-label">Perfil</span>
+    </div>
+  </nav>
+
+  <!-- ── MODAL (Test de Humo) ── -->
+  <div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+    <div class="modal">
+      <div class="modal-handle"></div>
+
+      <!-- ESTADO 1: Buscando (simulación) -->
+      <div id="stateSearching">
+        <p class="modal-title">Buscando recolector...</p>
+        <p class="modal-sub">Encontrando el más cercano a tu ubicación</p>
+        <div class="progress-track">
+          <div class="progress-fill"></div>
+        </div>
+        <p class="searching-hint">Conectando con recolectores disponibles</p>
+      </div>
+
+      <!-- ESTADO 2: Pop-up de captura (cierre del test) -->
+      <div id="stateCapture" class="hidden">
+        <div class="capture-tag">¡Lanzamiento inminente!</div>
+        <p class="modal-title">Casi listo en tu comuna 🎉</p>
+        <p class="modal-sub">Estamos completando los cupos de la flota. Déjanos tu contacto y te damos <strong>20% de descuento</strong> en tu primer retiro.</p>
+
+        <div class="form-group">
+          <label class="form-label" for="inputEmail">Correo electrónico</label>
+          <input class="form-input" type="email" id="inputEmail" placeholder="tucorreo@email.com" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputPhone">Teléfono</label>
+          <input class="form-input" type="tel" id="inputPhone" placeholder="+56 9 1234 5678" />
+        </div>
+
+        <button class="btn-primary" onclick="submitCapture()">
+          Quiero mi 20% de descuento
+        </button>
+        <p class="capture-terms">Te avisaremos cuando lleguemos a tu zona. Sin spam, prometido.</p>
+      </div>
+
+      <!-- ESTADO 3: Confirmación final -->
+      <div id="stateConfirm" class="hidden">
+        <div class="confirm-check">✓</div>
+        <p class="modal-title">¡Gracias por tu interés!</p>
+        <p class="modal-sub">Estamos afinando los últimos detalles de nuestra app en tu zona. Te contactaremos pronto con prioridad de atención y tu descuento del 20%.</p>
+        <div class="confirm-data" id="confirmData"></div>
+        <button class="btn-outline" onclick="closeModal()">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
